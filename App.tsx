@@ -5,7 +5,7 @@ import { ThemeProvider } from "styled-components/native";
 import themes from "./src/themes";
 import { View } from "react-native";
 
-export default function App() {
+function App() {
   return (
     <ThemeProvider theme={themes["light"]}>
       <StatusBar style="dark" backgroundColor={themes["light"].palette.background.main} translucent={false} />
@@ -17,3 +17,7 @@ export default function App() {
     </ThemeProvider>
   );
 }
+
+// > Switch between exports to toggle storybook.
+export { default } from "./storybook";
+// export default App;
