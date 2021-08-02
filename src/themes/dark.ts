@@ -1,7 +1,7 @@
 import { DefaultTheme } from "styled-components";
 
-const light: DefaultTheme = {
-  statusBar: "dark",
+const dark: DefaultTheme = {
+  statusBar: "light",
   palette: {
     primary: {
       main: "#9060d0",
@@ -12,15 +12,15 @@ const light: DefaultTheme = {
       contrastText: "#ffffff",
     },
     background: {
-      main: "#e0e0e0",
-      contrastText: "#000000",
-      highlight: "#d0d0d0"
+      main: "#000000",
+      contrastText: "#ffffff",
+      highlight: "#303030"
     },
     focusBlock: {
-      main: "#ffffff",
-      contrastText: "#000000",
+      main: "#303030",
+      contrastText: "#ffffff",
     },
   },
 };
 
-export default light;
+export default dark;

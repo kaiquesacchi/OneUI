@@ -3,6 +3,7 @@ import "styled-components/native";
 interface iPalette {
   main: string;
   contrastText: string;
+  highlight?: string;
 }
 declare module "styled-components" {
   export interface DefaultTheme {
