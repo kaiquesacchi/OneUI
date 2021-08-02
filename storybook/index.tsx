@@ -1,5 +1,5 @@
 import { getStorybookUI, configure, addDecorator } from "@storybook/react-native";
-import { withKnobs } from "@storybook/addon-knobs";
+import { select, withKnobs } from "@storybook/addon-knobs";
 
 import "./rn-addons";
 import React from "react";
@@ -9,17 +9,19 @@ import themes from "../src/themes";
 
 /* -------------------------------------- Global decorators ------------------------------------- */
 type DecoratorFunction = Parameters<typeof addDecorator>[0];
-type StoryFn = Parameters<DecoratorFunction>[0];
 
 /** Adds the styled-components' theme provider and expo's status bar  */
-const globalDecorator: DecoratorFunction = (story: StoryFn) => (
-  <ThemeProvider theme={themes["light"]}>
-    <StatusBar style="dark" backgroundColor={themes["light"].palette.background.main} translucent={false} />
-    {story()}
-  </ThemeProvider>
-);
-addDecorator(withKnobs);
-addDecorator(globalDecorator); // enables knobs for all stories
+const globalDecorator: DecoratorFunction = (story) => {
+  const themeSelector = select("Theme", ["light", "dark"], "light");
+  return (
+    <ThemeProvider theme={themes[themeSelector]}>
+      <StatusBar style="dark" backgroundColor={themes[themeSelector].palette.background.main} translucent={false} />
+      {story()}
+    </ThemeProvider>
+  );
+};
+addDecorator(globalDecorator);
+addDecorator(withKnobs); // enables knobs for all stories
 
 /* ------------------------------------- Storybook settings ------------------------------------- */
 // import stories
