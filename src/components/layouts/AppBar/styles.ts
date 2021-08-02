@@ -41,7 +41,8 @@ export const BackButton = styled.TouchableHighlight`
   border-radius: 20px;
   align-items: center;
   justify-content: center;
-  color: ${p => p.theme.palette.background.contrastText}
+  color: ${p => p.theme.palette.background.contrastText};
+  margin-right: 5px;
 `;
 
 interface iTitle {
@@ -50,6 +51,7 @@ interface iTitle {
 export const Title = styled.Text<iTitle>`
   opacity: ${p => p.opacity};
   font-size: 24px;
+  color: ${p => p.theme.palette.background.contrastText}
 `;
 
 export const Content = styled.View`

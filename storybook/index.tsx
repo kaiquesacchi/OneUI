@@ -12,10 +12,14 @@ type DecoratorFunction = Parameters<typeof addDecorator>[0];
 
 /** Adds the styled-components' theme provider and expo's status bar  */
 const globalDecorator: DecoratorFunction = (story) => {
-  const themeSelector = select("Theme", ["light", "dark"], "light");
+  const selectedTheme = themes[select("Theme", ["light", "dark"], "light")];
   return (
-    <ThemeProvider theme={themes[themeSelector]}>
-      <StatusBar style="dark" backgroundColor={themes[themeSelector].palette.background.main} translucent={false} />
+    <ThemeProvider theme={selectedTheme}>
+      <StatusBar
+        style={selectedTheme.statusBar}
+        backgroundColor={selectedTheme.palette.background.main}
+        translucent={false}
+      />
       {story()}
     </ThemeProvider>
   );
