@@ -1,6 +1,8 @@
 import React, { useCallback, useRef, useState } from "react";
 import { Dimensions, NativeScrollEvent, NativeSyntheticEvent, ScrollView } from "react-native";
 import * as SC from "./styles";
+import { AntDesign } from "@expo/vector-icons";
+import { useTheme } from "styled-components";
 
 /* ------------------------------------ Screen size constants ----------------------------------- */
 const SCREEN_HEIGHT = Dimensions.get("window").height;
@@ -21,6 +23,7 @@ export default function AppBar({ title, expandedTitle, backButton, children }: i
   const [headerOpacity, setHeaderOpacity] = useState(0);
   const [expandedAreaOpacity, setExpandedAreaOpacity] = useState(1);
   const [expandedAreaPadding, setExpandedAreaPadding] = useState(0);
+  const theme = useTheme();
 
   const scrollViewRef = useRef<ScrollView>(null);
 
@@ -72,6 +75,11 @@ export default function AppBar({ title, expandedTitle, backButton, children }: i
         <SC.ExpandedTitle opacity={expandedAreaOpacity}>{expandedTitle ?? title}</SC.ExpandedTitle>
       </SC.ExpandedArea>
       <SC.Header>
+        {backButton && (
+          <SC.BackButton onPress={() => {}} underlayColor={theme.palette.background.highlight}>
+            <AntDesign name="left" size={24} color={theme.palette.background.contrastText} />
+          </SC.BackButton>
+        )}
         <SC.Title opacity={headerOpacity}>{title}</SC.Title>
       </SC.Header>
       <SC.Content>{children}</SC.Content>
