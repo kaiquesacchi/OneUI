@@ -3,25 +3,17 @@ import { select, withKnobs } from "@storybook/addon-knobs";
 
 import "./rn-addons";
 import React from "react";
-import { ThemeProvider } from "styled-components/native";
-import { StatusBar } from "expo-status-bar";
-import themes from "../src/themes";
+import OneUIProvider from "../src";
 
 /* -------------------------------------- Global decorators ------------------------------------- */
 type DecoratorFunction = Parameters<typeof addDecorator>[0];
 
 /** Adds the styled-components' theme provider and expo's status bar  */
 const globalDecorator: DecoratorFunction = (story) => {
-  const selectedTheme = themes[select("Theme", ["light", "dark"], "light")];
   return (
-    <ThemeProvider theme={selectedTheme}>
-      <StatusBar
-        style={selectedTheme.statusBar}
-        backgroundColor={selectedTheme.palette.background.main}
-        translucent={false}
-      />
-      {story()}
-    </ThemeProvider>
+    <OneUIProvider selectedTheme={select("Theme", ["light", "dark"], "light")}>
+      {story() as React.ReactNode}
+    </OneUIProvider>
   );
 };
 addDecorator(globalDecorator);
