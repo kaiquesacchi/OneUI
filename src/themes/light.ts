@@ -20,6 +20,10 @@ const light: DefaultTheme = {
       main: "#ffffff",
       contrastText: "#000000",
     },
+    tooltip: {
+      main: "#ffffff",
+      contrastText: "#000000",
+    }
   },
 };
 

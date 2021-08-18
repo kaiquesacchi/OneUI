@@ -13,6 +13,7 @@ declare module "styled-components" {
       secondary: iPalette;
       background: iPalette;
       focusBlock: iPalette;
+      tooltip: iPalette;
     };
   }
 }

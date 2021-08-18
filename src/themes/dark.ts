@@ -20,6 +20,10 @@ const dark: DefaultTheme = {
       main: "#303030",
       contrastText: "#ffffff",
     },
+    tooltip: {
+      main: "#606060",
+      contrastText: "#ffffff",
+    }
   },
 };
 
