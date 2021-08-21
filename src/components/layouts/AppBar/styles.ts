@@ -26,7 +26,7 @@ export const ExpandedTitle = styled.Text<iExpandedTitle>`
   color: ${p => p.theme.palette.background.contrastText};
 `;
 
-/* ------------------------------------------- Content ------------------------------------------ */
+/* ------------------------------------------- Header ------------------------------------------- */
 export const Header = styled.View`
   background-color: ${p => p.theme.palette.background.main};
   padding: 20px 5px;
@@ -51,6 +51,7 @@ export const ActionButtonsArea = styled.View`
   justify-content: flex-end;
 `;
 
+/* ------------------------------------------- Content ------------------------------------------ */
 export const Content = styled.View`
   flex: 1;
 `;

@@ -1,8 +1,6 @@
 import React, { useCallback, useRef, useState } from "react";
 import { Dimensions, NativeScrollEvent, NativeSyntheticEvent, ScrollView } from "react-native";
-import { ActionButton, iActionButton } from "../../buttons";
-import { useTheme } from "styled-components";
-import { useTooltip } from "../../toasts/";
+import { ActionButton, iActionButton, ActionButtonMoreMenu } from "../../buttons";
 import * as SC from "./styles";
 
 /* ------------------------------------ Screen size constants ----------------------------------- */
@@ -29,8 +27,6 @@ export function AppBar({ title, expandedTitle, backButton, actionButtons, childr
   const [headerOpacity, setHeaderOpacity] = useState(0);
   const [expandedAreaOpacity, setExpandedAreaOpacity] = useState(1);
   const [expandedAreaPadding, setExpandedAreaPadding] = useState(0);
-  const [setTooltip, dismissTooltip] = useTooltip();
-  const theme = useTheme();
 
   const scrollViewRef = useRef<ScrollView>(null);
 
@@ -82,28 +78,16 @@ export function AppBar({ title, expandedTitle, backButton, actionButtons, childr
         <SC.ExpandedTitle opacity={expandedAreaOpacity}>{expandedTitle ?? title}</SC.ExpandedTitle>
       </SC.ExpandedArea>
       <SC.Header>
-        {backButton && (
-          <ActionButton label="Go Back" icon="chevron-left" onPress={() => {}} onPressOut={dismissTooltip} />
-        )}
+        {backButton && <ActionButton label="Go Back" icon="chevron-left" onPress={() => {}} dismissOnPressOut />}
         <SC.Title opacity={headerOpacity} numberOfLines={1}>
           {title}
         </SC.Title>
         <SC.ActionButtonsArea>
-          {actionButtons?.map((actionButton, index) => (
-            <ActionButton {...actionButton} onPressOut={dismissTooltip} key={index} />
+          {actionButtons?.slice(0, actionButtons.length > 3 ? 2 : 3).map((actionButton, index) => (
+            <ActionButton {...actionButton} dismissOnPressOut key={index} />
           ))}
         </SC.ActionButtonsArea>
-        <ActionButton
-          icon="more-vertical"
-          label="More Actions"
-          onPress={(event) => {
-            setTooltip({
-              content: "More Actions",
-              nativeEvent: event.nativeEvent,
-            });
-          }}
-          onPressOut={dismissTooltip}
-        />
+        {actionButtons && actionButtons.length > 3 && <ActionButtonMoreMenu actionButtons={actionButtons.slice(2)} />}
       </SC.Header>
       <SC.Content>{children}</SC.Content>
     </SC.Container>
