@@ -4,9 +4,6 @@ import { TooltipProvider } from "./components/toasts";
 import { ThemeProvider } from "styled-components/native";
 import themes from "../src/themes";
 
-export * from "./components/layouts";
-export * from "./components/toasts";
-
 interface iProps {
   selectedTheme: keyof typeof themes;
   children: React.ReactNode;
