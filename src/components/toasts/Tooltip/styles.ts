@@ -18,10 +18,12 @@ interface iTooltip {
 }
 export const Tooltip = styled.View<iTooltip>`
   position: absolute;
-  padding: 10px 16px;
   background-color: ${p => p.theme.palette.tooltip.main};
   border-radius: 20px;
+  overflow: hidden;
   ${p => Object.entries(p.offset).map(([key, value]) => `${key}: ${value};`)}
 `;
 
-export const TextContent = styled.Text``;
+export const TextContent = styled.Text`
+  padding: 10px 16px;
+`;
