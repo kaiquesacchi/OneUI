@@ -1,28 +1,35 @@
 import React, { useCallback, useRef, useState } from "react";
 import { Dimensions, NativeScrollEvent, NativeSyntheticEvent, ScrollView } from "react-native";
-import * as SC from "./styles";
-import { AntDesign } from "@expo/vector-icons";
+import { ActionButton, iActionButton } from "../../buttons";
 import { useTheme } from "styled-components";
+import { useTooltip } from "../../toasts/";
+import * as SC from "./styles";
 
 /* ------------------------------------ Screen size constants ----------------------------------- */
+
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 const EXPANDED_AREA_HEIGHT = Math.floor(SCREEN_HEIGHT * 0.3); // 30% of the screen size.
 const EXPANDED_AREA_HEIGHT_75P = EXPANDED_AREA_HEIGHT * 0.75; // 75% of the expanded area height.
 const EXPANDED_AREA_HEIGHT_50P = EXPANDED_AREA_HEIGHT * 0.5; // 50% of the expanded area height.
 const EXPANDED_AREA_HEIGHT_25P = EXPANDED_AREA_HEIGHT * 0.25; // 25% of the expanded area height.
-/* ---------------------------------------------------------------------------------------------- */
+
+/* -------------------------------------------- Types ------------------------------------------- */
 
 interface iProps {
   title: String;
   expandedTitle?: String;
   backButton: Boolean;
+  actionButtons?: iActionButton[];
   children?: React.ReactNode;
 }
 
-export default function AppBar({ title, expandedTitle, backButton, children }: iProps) {
+/* ---------------------------------------------------------------------------------------------- */
+
+export function AppBar({ title, expandedTitle, backButton, actionButtons, children }: iProps) {
   const [headerOpacity, setHeaderOpacity] = useState(0);
   const [expandedAreaOpacity, setExpandedAreaOpacity] = useState(1);
   const [expandedAreaPadding, setExpandedAreaPadding] = useState(0);
+  const [setTooltip, dismissTooltip] = useTooltip();
   const theme = useTheme();
 
   const scrollViewRef = useRef<ScrollView>(null);
@@ -76,11 +83,27 @@ export default function AppBar({ title, expandedTitle, backButton, children }: i
       </SC.ExpandedArea>
       <SC.Header>
         {backButton && (
-          <SC.BackButton onPress={() => {}} underlayColor={theme.palette.background.highlight}>
-            <AntDesign name="left" size={24} color={theme.palette.background.contrastText} />
-          </SC.BackButton>
+          <ActionButton label="Go Back" icon="chevron-left" onPress={() => {}} onPressOut={dismissTooltip} />
         )}
-        <SC.Title opacity={headerOpacity}>{title}</SC.Title>
+        <SC.Title opacity={headerOpacity} numberOfLines={1}>
+          {title}
+        </SC.Title>
+        <SC.ActionButtonsArea>
+          {actionButtons?.map((actionButton, index) => (
+            <ActionButton {...actionButton} onPressOut={dismissTooltip} key={index} />
+          ))}
+        </SC.ActionButtonsArea>
+        <ActionButton
+          icon="more-vertical"
+          label="More Actions"
+          onPress={(event) => {
+            setTooltip({
+              content: "More Actions",
+              nativeEvent: event.nativeEvent,
+            });
+          }}
+          onPressOut={dismissTooltip}
+        />
       </SC.Header>
       <SC.Content>{children}</SC.Content>
     </SC.Container>

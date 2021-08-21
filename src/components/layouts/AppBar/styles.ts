@@ -23,26 +23,15 @@ interface iExpandedTitle {
 export const ExpandedTitle = styled.Text<iExpandedTitle>`
   opacity: ${p => p.opacity};
   font-size: 40px;
-  color: ${p => p.theme.palette.background.contrastText}
+  color: ${p => p.theme.palette.background.contrastText};
 `;
 
 /* ------------------------------------------- Content ------------------------------------------ */
 export const Header = styled.View`
   background-color: ${p => p.theme.palette.background.main};
-  padding: 20px;
+  padding: 20px 5px;
   flex-direction: row;
   align-items: center;
-`;
-
-export const BackButton = styled.TouchableHighlight`
-  background-color: ${p => p.theme.palette.background.main};
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  align-items: center;
-  justify-content: center;
-  color: ${p => p.theme.palette.background.contrastText};
-  margin-right: 5px;
 `;
 
 interface iTitle {
@@ -51,7 +40,15 @@ interface iTitle {
 export const Title = styled.Text<iTitle>`
   opacity: ${p => p.opacity};
   font-size: 24px;
-  color: ${p => p.theme.palette.background.contrastText}
+  color: ${p => p.theme.palette.background.contrastText};
+  flex-shrink: 1;
+  overflow: hidden;
+`;
+
+export const ActionButtonsArea = styled.View`
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: flex-end;
 `;
 
 export const Content = styled.View`
