@@ -16,7 +16,7 @@ storiesOf("layouts/App Bar", module).add("Default", () => (
   <AppBar
     title={text("title", "App Bar Example")}
     expandedTitle={text("expandedTitle", "Expanded App Bar")}
-    backButton={boolean("backButton", true)}
+    backButtonOnPress={boolean("backButton", true) ? () => {} : undefined}
     actionButtons={defaultActionButtons.slice(
       0,
       select("actionButtons (amount)", { None: 0, One: 1, Two: 2, Three: 3, Four: 4, Five: 5 }, 5)

@@ -16,14 +16,14 @@ const EXPANDED_AREA_HEIGHT_25P = EXPANDED_AREA_HEIGHT * 0.25; // 25% of the expa
 interface iProps {
   title: String;
   expandedTitle?: String;
-  backButton: Boolean;
+  backButtonOnPress?: () => void;
   actionButtons?: iActionButton[];
   children?: React.ReactNode;
 }
 
 /* ---------------------------------------------------------------------------------------------- */
 
-export function AppBar({ title, expandedTitle, backButton, actionButtons, children }: iProps) {
+export function AppBar({ title, expandedTitle, backButtonOnPress, actionButtons, children }: iProps) {
   const [headerOpacity, setHeaderOpacity] = useState(0);
   const [expandedAreaOpacity, setExpandedAreaOpacity] = useState(1);
   const [expandedAreaPadding, setExpandedAreaPadding] = useState(0);
@@ -78,7 +78,9 @@ export function AppBar({ title, expandedTitle, backButton, actionButtons, childr
         <SC.ExpandedTitle opacity={expandedAreaOpacity}>{expandedTitle ?? title}</SC.ExpandedTitle>
       </SC.ExpandedArea>
       <SC.Header>
-        {backButton && <ActionButton label="Go Back" icon="chevron-left" onPress={() => {}} dismissOnPressOut />}
+        {backButtonOnPress && (
+          <ActionButton label="Go Back" icon="chevron-left" onPress={backButtonOnPress} dismissOnPressOut />
+        )}
         <SC.Title opacity={headerOpacity} numberOfLines={1}>
           {title}
         </SC.Title>
