@@ -54,7 +54,7 @@ export function ActionButtonMoreMenu({ actionButtons }: iPropsActionButtonMoreMe
             dismissTooltip();
             item.onPress(event);
           }}
-          underlayColor={theme.palette.background.highlight}
+          underlayColor={theme.palette.tooltip.highlight}
           key={index}
         >
           <SC.Label>{item.label}</SC.Label>

@@ -26,4 +26,5 @@ export const Tooltip = styled.View<iTooltip>`
 
 export const TextContent = styled.Text`
   padding: 10px 16px;
+  color: ${p => p.theme.palette.tooltip.contrastText}
 `;

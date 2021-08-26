@@ -23,6 +23,7 @@ const light: DefaultTheme = {
     tooltip: {
       main: "#ffffff",
       contrastText: "#000000",
+      highlight: "#d0d0d0",
     }
   },
 };

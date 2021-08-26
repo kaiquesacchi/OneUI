@@ -21,4 +21,6 @@ export const MoreItem = styled.TouchableHighlight`
   padding: 10px 20px;
 `;
 
-export const Label = styled.Text``;
+export const Label = styled.Text`
+  color: ${p => p.theme.palette.tooltip.contrastText}
+`;
