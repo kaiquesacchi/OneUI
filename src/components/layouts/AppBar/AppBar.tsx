@@ -75,7 +75,9 @@ export function AppBar({ title, expandedTitle, backButtonOnPress, actionButtons,
       contentContainerStyle={{ minHeight: SCREEN_HEIGHT + EXPANDED_AREA_HEIGHT }}
     >
       <SC.ExpandedArea height={EXPANDED_AREA_HEIGHT} paddingTop={expandedAreaPadding}>
-        <SC.ExpandedTitle opacity={expandedAreaOpacity}>{expandedTitle ?? title}</SC.ExpandedTitle>
+        <SC.ExpandedTitle opacity={expandedAreaOpacity} numberOfLines={3}>
+          {expandedTitle ?? title}
+        </SC.ExpandedTitle>
       </SC.ExpandedArea>
       <SC.Header>
         {backButtonOnPress && (

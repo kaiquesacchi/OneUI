@@ -11,6 +11,7 @@ interface iExpandedArea {
 }
 export const ExpandedArea = styled.View<iExpandedArea>`
   height: ${p => p.height}px;
+  padding: 0 60px;
   padding-top: ${p => p.paddingTop}px;
   background-color: transparent;
   align-items: center;
@@ -24,6 +25,7 @@ export const ExpandedTitle = styled.Text<iExpandedTitle>`
   opacity: ${p => p.opacity};
   font-size: 40px;
   color: ${p => p.theme.palette.background.contrastText};
+  text-align: center;
 `;
 
 /* ------------------------------------------- Header ------------------------------------------- */
