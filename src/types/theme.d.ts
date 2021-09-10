@@ -1,19 +1,8 @@
 import "styled-components/native";
+import light from '../themes/light'
 
-interface iPalette {
-  main: string;
-  contrastText: string;
-  highlight?: string;
-}
+type Theme = typeof light
+
 declare module "styled-components" {
-  export interface DefaultTheme {
-    statusBar: "light" | "dark";
-    palette: {
-      primary: iPalette;
-      secondary: iPalette;
-      background: iPalette;
-      focusBlock: iPalette;
-      tooltip: iPalette;
-    };
-  }
+  export interface DefaultTheme extends Theme {}
 }

@@ -5,6 +5,7 @@ import { iActionButton } from "../../../../src/components/buttons";
 import { text, boolean, select } from "@storybook/addon-knobs";
 import { FocusBlock } from "../../../../src/components/focusBlocks";
 import { Text } from "react-native";
+import ListFocusBlock, { iItem } from "../../../../src/components/focusBlocks/ListFocusBlock/ListFocusBlock";
 
 const defaultActionButtons: iActionButton[] = [
   { label: "Add", icon: "plus", onPress: () => {} },
@@ -16,6 +17,39 @@ const defaultActionButtons: iActionButton[] = [
 
 const loremIpsum =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+
+const items: iItem[] = [
+  {
+    title: "First Item",
+    subtitle: loremIpsum,
+    icon: {
+      source: {
+        uri: "https://img.flaticon.com/icons/png/512/169/169367.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF",
+      },
+      format: "square",
+    },
+  },
+  {
+    title: "Second Item",
+    subtitle: loremIpsum,
+    icon: {
+      source: {
+        uri: "https://i.pinimg.com/originals/ec/a1/d7/eca1d7141639ee5b85e4f4c9a47d8ae4.png",
+      },
+      format: "circle",
+    },
+  },
+  {
+    title: "Third Item",
+    subtitle: loremIpsum,
+    icon: {
+      source: {
+        uri: "https://cdn.pixabay.com/photo/2016/03/31/21/56/blue-1296737_1280.png",
+      },
+      format: "rounded",
+    },
+  },
+];
 
 storiesOf("layouts/App Bar", module)
   .add("Empty", () => (
@@ -47,6 +81,7 @@ storiesOf("layouts/App Bar", module)
       <FocusBlock externalHeader="External Header">
         <Text>Content</Text>
       </FocusBlock>
+      <ListFocusBlock items={items} externalHeader="List" />
     </AppBar>
   ))
   .add("Long title", () => (

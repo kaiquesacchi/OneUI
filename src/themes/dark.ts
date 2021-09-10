@@ -14,11 +14,14 @@ const dark: DefaultTheme = {
     background: {
       main: "#000000",
       contrastText: "#ffffff",
+      mutedText: "#d0d0d0",
       highlight: "#303030"
     },
     focusBlock: {
       main: "#303030",
       contrastText: "#ffffff",
+      mutedText: "#a0a0a0",
+      divider: "#606060"
     },
     tooltip: {
       main: "#2a2a2a",
