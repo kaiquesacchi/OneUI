@@ -2,34 +2,60 @@ import React from "react";
 import { Image } from "react-native";
 import { FocusBlock } from "../FocusBlock/FocusBlock";
 import * as SC from "./styles";
+import { Feather } from "@expo/vector-icons";
 
-export interface iItem {
+interface iItem {
   title: string;
   subtitle?: string;
-  icon?: {
+}
+
+interface iItemWithImage extends iItem {
+  icon: never;
+  image: {
     source: React.ComponentProps<typeof Image>["source"];
     format: "circle" | "rounded" | "square";
+    backgroundColor?: string;
   };
 }
 
+interface iItemWithIcon extends iItem {
+  icon: {
+    iconProps: React.ComponentProps<typeof Feather>;
+    format: "circle" | "rounded" | "square";
+    backgroundColor?: string;
+  };
+  image: never;
+}
+
 interface iProps extends React.ComponentProps<typeof FocusBlock> {
-  items: iItem[];
+  items: (iItemWithImage | iItemWithIcon | iItem)[];
 }
 
 export default function ListFocusBlock({ items, ...rest }: iProps) {
   return (
     <FocusBlock {...rest}>
-      {items.map(({ title, subtitle, icon }, index) => (
-        <>
+      {items.map(({ title, subtitle, ...avatar }, index) => (
+        <React.Fragment key={index}>
           {index !== 0 && <SC.Divider />}
-          <SC.ListItem key={index}>
-            {icon && <SC.Icon source={icon.source} format={icon.format} />}
+          <SC.ListItem>
+            {"image" in avatar && (
+              <SC.Image
+                source={avatar.image.source}
+                format={avatar.image.format}
+                backgroundColor={avatar.image.backgroundColor}
+              />
+            )}
+            {"icon" in avatar && (
+              <SC.IconContainer format={avatar.icon.format} backgroundColor={avatar.icon.backgroundColor}>
+                <Feather {...avatar.icon.iconProps} />
+              </SC.IconContainer>
+            )}
             <SC.TextArea>
               <SC.Title>{title}</SC.Title>
               {subtitle && <SC.Subtitle>{subtitle}</SC.Subtitle>}
             </SC.TextArea>
           </SC.ListItem>
-        </>
+        </React.Fragment>
       ))}
     </FocusBlock>
   );

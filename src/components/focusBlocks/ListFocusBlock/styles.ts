@@ -5,15 +5,32 @@ export const ListItem = styled.View`
   align-items: center;
 `;
 
-interface iIcon {
+interface iImage {
   format: 'circle' | 'rounded' | 'square'
+  backgroundColor?: string
 }
-export const Icon = styled.Image<iIcon>`
+export const Image = styled.Image<iImage>`
   width: 40px;
   height: 40px;
   border-radius: ${p => p.format === 'circle' ? '20px' : p.format === 'rounded' ? '10px' : '0px'};
   margin-right: 10px;
+  background-color: ${p => p.backgroundColor ?? 'transparent'};
 `;
+
+interface iIconContainer {
+  backgroundColor?: string
+  format: 'circle' | 'rounded' | 'square'
+}
+
+export const IconContainer = styled.View<iIconContainer>`
+  width: 40px;
+  height: 40px;
+  border-radius: ${p => p.format === 'circle' ? '20px' : p.format === 'rounded' ? '10px' : '0px'};
+  margin-right: 10px;
+  background-color: ${p => p.backgroundColor ?? 'transparent'};
+  align-items: center;
+  justify-content: center;
+`
 
 export const TextArea = styled.View`
   flex: 1;
