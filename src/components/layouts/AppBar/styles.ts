@@ -31,7 +31,7 @@ export const ExpandedTitle = styled.Text<iExpandedTitle>`
 /* ------------------------------------------- Header ------------------------------------------- */
 export const Header = styled.View`
   background-color: ${p => p.theme.palette.background.main};
-  padding: 20px 5px;
+  padding: 18px 5px;
   flex-direction: row;
   align-items: center;
 `;

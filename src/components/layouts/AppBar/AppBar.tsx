@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
-import { Dimensions, NativeScrollEvent, NativeSyntheticEvent, ScrollView } from "react-native";
+import { Dimensions, NativeScrollEvent, NativeSyntheticEvent, ScrollView, StatusBar } from "react-native";
 import { ActionButton, iActionButton, ActionButtonMoreMenu } from "../../buttons";
 import * as SC from "./styles";
 
@@ -10,6 +10,7 @@ const EXPANDED_AREA_HEIGHT = Math.floor(SCREEN_HEIGHT * 0.3); // 30% of the scre
 const EXPANDED_AREA_HEIGHT_75P = EXPANDED_AREA_HEIGHT * 0.75; // 75% of the expanded area height.
 const EXPANDED_AREA_HEIGHT_50P = EXPANDED_AREA_HEIGHT * 0.5; // 50% of the expanded area height.
 const EXPANDED_AREA_HEIGHT_25P = EXPANDED_AREA_HEIGHT * 0.25; // 25% of the expanded area height.
+const STATUS_BAR_HEIGHT = StatusBar.currentHeight || 0
 
 /* -------------------------------------------- Types ------------------------------------------- */
 
@@ -72,7 +73,7 @@ export function AppBar({ title, expandedTitle, backButtonOnPress, actionButtons,
       onScroll={handleScroll}
       onScrollEndDrag={handleScrollEnd}
       ref={scrollViewRef}
-      contentContainerStyle={{ minHeight: SCREEN_HEIGHT + EXPANDED_AREA_HEIGHT }}
+      contentContainerStyle={{ minHeight: SCREEN_HEIGHT + EXPANDED_AREA_HEIGHT - STATUS_BAR_HEIGHT }}
     >
       <SC.ExpandedArea height={EXPANDED_AREA_HEIGHT} paddingTop={expandedAreaPadding}>
         <SC.ExpandedTitle opacity={expandedAreaOpacity} numberOfLines={3}>
