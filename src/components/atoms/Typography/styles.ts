@@ -40,4 +40,6 @@ export default styled.Text<iTypography>`
   color: ${p => p.theme.palette[fontDefinitions[p.type].background][p.muted ? 'mutedText' : 'contrastText']};
   font-size: ${p => fontDefinitions[p.type].size}px;
   font-weight: ${p => fontDefinitions[p.type].weight};
+  flex-shrink: 1;
+  overflow: hidden;
 `;
