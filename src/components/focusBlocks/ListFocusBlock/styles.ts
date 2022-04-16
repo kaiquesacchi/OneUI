@@ -9,6 +9,7 @@ interface iImage {
   format: 'circle' | 'rounded' | 'square'
   backgroundColor?: string
 }
+
 export const Image = styled.Image<iImage>`
   width: 40px;
   height: 40px;
@@ -37,11 +38,12 @@ export const TextArea = styled.View`
 `;
 
 export const Title = styled.Text`
+  color: ${p => p.theme.palette.focusBlock.contrastText};
   font-size: 18px;
 `;
 
 export const Subtitle = styled.Text`
-  color: ${p => p.theme.palette.focusBlock.mutedText}
+  color: ${p => p.theme.palette.focusBlock.mutedText};
 `;
 
 export const Divider = styled.View`
