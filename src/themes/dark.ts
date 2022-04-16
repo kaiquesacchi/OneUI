@@ -18,7 +18,7 @@ const dark: DefaultTheme = {
       highlight: "#303030"
     },
     focusBlock: {
-      main: "#303030",
+      main: "#151415",
       contrastText: "#ffffff",
       mutedText: "#a0a0a0",
       divider: "#606060"
