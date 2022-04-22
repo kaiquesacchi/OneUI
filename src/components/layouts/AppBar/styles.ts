@@ -18,33 +18,12 @@ export const ExpandedArea = styled.View<iExpandedArea>`
   justify-content: center;
 `;
 
-interface iExpandedTitle {
-  opacity: number;
-}
-export const ExpandedTitle = styled.Text<iExpandedTitle>`
-  opacity: ${p => p.opacity};
-  font-size: 40px;
-  color: ${p => p.theme.palette.background.contrastText};
-  text-align: center;
-`;
-
 /* ------------------------------------------- Header ------------------------------------------- */
 export const Header = styled.View`
   background-color: ${p => p.theme.palette.background.main};
   padding: 18px 5px;
   flex-direction: row;
   align-items: center;
-`;
-
-interface iTitle {
-  opacity: number;
-}
-export const Title = styled.Text<iTitle>`
-  opacity: ${p => p.opacity};
-  font-size: 24px;
-  color: ${p => p.theme.palette.background.contrastText};
-  flex-shrink: 1;
-  overflow: hidden;
 `;
 
 export const ActionButtonsArea = styled.View`
@@ -56,4 +35,5 @@ export const ActionButtonsArea = styled.View`
 /* ------------------------------------------- Content ------------------------------------------ */
 export const Content = styled.View`
   flex: 1;
+  padding: 0 30px;
 `;

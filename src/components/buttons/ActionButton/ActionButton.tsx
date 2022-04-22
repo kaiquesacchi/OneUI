@@ -2,19 +2,24 @@ import React from "react";
 import { Feather } from "@expo/vector-icons";
 import { useTheme } from "styled-components";
 import * as SC from "./styles";
-import { GestureResponderEvent, TouchableHighlight } from "react-native";
+import { GestureResponderEvent } from "react-native";
 import { useTooltip } from "../../toasts";
 
-export interface iActionButton {
+interface iPropsActionButton {
   label: string;
   icon: React.ComponentProps<typeof Feather>["name"];
   onPress: (event: GestureResponderEvent) => any;
   dismissOnPressOut?: boolean;
+  onPressOut?: (event: GestureResponderEvent) => {};
 }
 
-type iProps = iActionButton & React.ComponentProps<typeof TouchableHighlight>;
-
-export function ActionButton({ label, icon, dismissOnPressOut, onPressOut, ...rest }: iProps) {
+export function ActionButton({
+  label,
+  icon,
+  dismissOnPressOut,
+  onPressOut,
+  ...rest
+}: iPropsActionButton) {
   const theme = useTheme();
   const [setTooltip, dismissTooltip] = useTooltip();
   return (
@@ -40,13 +45,13 @@ export function ActionButton({ label, icon, dismissOnPressOut, onPressOut, ...re
 /* ----------------------------------------- 'More' Menu ---------------------------------------- */
 
 interface iPropsActionButtonMoreMenu {
-  actionButtons: iActionButton[];
+  actionButtons: iPropsActionButton[];
 }
 export function ActionButtonMoreMenu({ actionButtons }: iPropsActionButtonMoreMenu) {
   const theme = useTheme();
   const [setTooltip, dismissTooltip] = useTooltip();
 
-  const moreMenuTooltip = (items: iActionButton[]) => (
+  const moreMenuTooltip = (items: iPropsActionButton[]) => (
     <SC.MoreMenuTooltip>
       {items.map((item, index) => (
         <SC.MoreItem

@@ -1,8 +1,14 @@
 import React, { useCallback, useRef, useState } from "react";
-import { Dimensions, NativeScrollEvent, NativeSyntheticEvent, ScrollView, StatusBar } from "react-native";
-import { ActionButton, iActionButton, ActionButtonMoreMenu } from "../../buttons";
+import {
+  Dimensions,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  ScrollView,
+  StatusBar,
+} from "react-native";
+import { Typography } from "@atoms";
+import { ActionButton, ActionButtonMoreMenu } from "@buttons";
 import * as SC from "./styles";
-
 /* ------------------------------------ Screen size constants ----------------------------------- */
 
 const SCREEN_HEIGHT = Dimensions.get("window").height;
@@ -10,7 +16,7 @@ const EXPANDED_AREA_HEIGHT = Math.floor(SCREEN_HEIGHT * 0.3); // 30% of the scre
 const EXPANDED_AREA_HEIGHT_75P = EXPANDED_AREA_HEIGHT * 0.75; // 75% of the expanded area height.
 const EXPANDED_AREA_HEIGHT_50P = EXPANDED_AREA_HEIGHT * 0.5; // 50% of the expanded area height.
 const EXPANDED_AREA_HEIGHT_25P = EXPANDED_AREA_HEIGHT * 0.25; // 25% of the expanded area height.
-const STATUS_BAR_HEIGHT = StatusBar.currentHeight || 0
+const STATUS_BAR_HEIGHT = StatusBar.currentHeight || 0;
 
 /* -------------------------------------------- Types ------------------------------------------- */
 
@@ -18,13 +24,19 @@ interface iProps {
   title: String;
   expandedTitle?: String;
   backButtonOnPress?: () => void;
-  actionButtons?: iActionButton[];
+  actionButtons?: React.ComponentProps<typeof ActionButton>[];
   children?: React.ReactNode;
 }
 
 /* ---------------------------------------------------------------------------------------------- */
 
-export function AppBar({ title, expandedTitle, backButtonOnPress, actionButtons, children }: iProps) {
+export function AppBar({
+  title,
+  expandedTitle,
+  backButtonOnPress,
+  actionButtons,
+  children,
+}: iProps) {
   const [headerOpacity, setHeaderOpacity] = useState(0);
   const [expandedAreaOpacity, setExpandedAreaOpacity] = useState(1);
   const [expandedAreaPadding, setExpandedAreaPadding] = useState(0);
@@ -73,26 +85,39 @@ export function AppBar({ title, expandedTitle, backButtonOnPress, actionButtons,
       onScroll={handleScroll}
       onScrollEndDrag={handleScrollEnd}
       ref={scrollViewRef}
-      contentContainerStyle={{ minHeight: SCREEN_HEIGHT + EXPANDED_AREA_HEIGHT - STATUS_BAR_HEIGHT }}
+      contentContainerStyle={{
+        minHeight: SCREEN_HEIGHT + EXPANDED_AREA_HEIGHT - STATUS_BAR_HEIGHT,
+      }}
     >
       <SC.ExpandedArea height={EXPANDED_AREA_HEIGHT} paddingTop={expandedAreaPadding}>
-        <SC.ExpandedTitle opacity={expandedAreaOpacity} numberOfLines={3}>
+        <Typography
+          type="extendedTitle"
+          style={{ opacity: expandedAreaOpacity, textAlign: "center" }}
+          numberOfLines={3}
+        >
           {expandedTitle ?? title}
-        </SC.ExpandedTitle>
+        </Typography>
       </SC.ExpandedArea>
       <SC.Header>
         {backButtonOnPress && (
-          <ActionButton label="Go Back" icon="chevron-left" onPress={backButtonOnPress} dismissOnPressOut />
+          <ActionButton
+            label="Go Back"
+            icon="chevron-left"
+            onPress={backButtonOnPress}
+            dismissOnPressOut
+          />
         )}
-        <SC.Title opacity={headerOpacity} numberOfLines={1}>
+        <Typography type="title" style={{ opacity: headerOpacity }} numberOfLines={1}>
           {title}
-        </SC.Title>
+        </Typography>
         <SC.ActionButtonsArea>
           {actionButtons?.slice(0, actionButtons.length > 3 ? 2 : 3).map((actionButton, index) => (
             <ActionButton {...actionButton} dismissOnPressOut key={index} />
           ))}
         </SC.ActionButtonsArea>
-        {actionButtons && actionButtons.length > 3 && <ActionButtonMoreMenu actionButtons={actionButtons.slice(2)} />}
+        {actionButtons && actionButtons.length > 3 && (
+          <ActionButtonMoreMenu actionButtons={actionButtons.slice(2)} />
+        )}
       </SC.Header>
       <SC.Content>{children}</SC.Content>
     </SC.Container>
