@@ -7,7 +7,7 @@ import {
   StatusBar,
 } from "react-native";
 import { Typography } from "@atoms";
-import { ActionButton, ActionButtonMoreMenu } from "@buttons";
+import { ActionButton, ExpandableActionButton } from "@buttons";
 import * as SC from "./styles";
 /* ------------------------------------ Screen size constants ----------------------------------- */
 
@@ -116,7 +116,7 @@ export function AppBar({
           ))}
         </SC.ActionButtonsArea>
         {actionButtons && actionButtons.length > 3 && (
-          <ActionButtonMoreMenu actionButtons={actionButtons.slice(2)} />
+          <ExpandableActionButton actionButtons={actionButtons.slice(2)} />
         )}
       </SC.Header>
       <SC.Content>{children}</SC.Content>
