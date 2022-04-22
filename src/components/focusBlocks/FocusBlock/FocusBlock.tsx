@@ -1,3 +1,4 @@
+import { Typography } from "@atoms";
 import React from "react";
 import * as SC from "./styles";
 
@@ -9,7 +10,11 @@ interface iProps {
 export function FocusBlock({ externalHeader, children }: iProps) {
   return (
     <SC.Container>
-      {externalHeader && <SC.ExternalHeader>{externalHeader}</SC.ExternalHeader>}
+      {externalHeader && (
+        <Typography type="subHeader" muted>
+          {externalHeader}
+        </Typography>
+      )}
       <SC.Card>{children}</SC.Card>
     </SC.Container>
   );
