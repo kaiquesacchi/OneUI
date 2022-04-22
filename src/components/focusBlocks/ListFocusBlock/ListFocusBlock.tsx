@@ -3,6 +3,7 @@ import { Image } from "react-native";
 import { FocusBlock } from "../FocusBlock/FocusBlock";
 import * as SC from "./styles";
 import { Feather } from "@expo/vector-icons";
+import { Typography } from "@atoms";
 
 interface iItem {
   title: string;
@@ -51,8 +52,12 @@ export default function ListFocusBlock({ items, ...rest }: iProps) {
               </SC.IconContainer>
             )}
             <SC.TextArea>
-              <SC.Title>{title}</SC.Title>
-              {subtitle && <SC.Subtitle>{subtitle}</SC.Subtitle>}
+              <Typography type="mainList">{title}</Typography>
+              {subtitle && (
+                <Typography type="subList" muted>
+                  {subtitle}
+                </Typography>
+              )}
             </SC.TextArea>
           </SC.ListItem>
         </React.Fragment>

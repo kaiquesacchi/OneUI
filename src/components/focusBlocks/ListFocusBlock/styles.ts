@@ -37,15 +37,6 @@ export const TextArea = styled.View`
   flex: 1;
 `;
 
-export const Title = styled.Text`
-  color: ${p => p.theme.palette.focusBlock.contrastText};
-  font-size: 18px;
-`;
-
-export const Subtitle = styled.Text`
-  color: ${p => p.theme.palette.focusBlock.mutedText};
-`;
-
 export const Divider = styled.View`
   height: 1px;
   background-color: ${p => p.theme.palette.focusBlock.divider};
