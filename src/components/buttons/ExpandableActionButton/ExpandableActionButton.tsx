@@ -1,7 +1,7 @@
 import React from "react";
 import ActionButton from "@buttons/ActionButton/ActionButton";
+import { useTooltip } from "@toasts/index";
 import { useTheme } from "styled-components";
-import { useTooltip } from "@toasts";
 import * as SC from "./styles";
 
 interface iProps {

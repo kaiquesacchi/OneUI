@@ -11,9 +11,9 @@ module.exports = function (api) {
           alias: {
             "@atoms": "./src/components/atoms",
             "@buttons": "./src/components/buttons",
-            "@focusBlock": "src/components/focusBlock",
-            "@layouts": "src/components/layouts",
-            "@toasts": "src/components/toasts",
+            "@focusBlocks": "./src/components/focusBlocks",
+            "@layouts": "./src/components/layouts",
+            "@toasts": "./src/components/toasts",
           }
         }
       ]
